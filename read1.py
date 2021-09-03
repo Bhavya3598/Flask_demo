@@ -26,14 +26,3 @@ if __name__=='__main__':
     with app.app_context() :
         main()
 
-# @app.route("/delete/<string:book>")
-# def delete(book):
-#     print(book)
-#     title_delete = shelf.query.get_or_404(book)
-    
-#     try:
-#         db.session.delete(title_delete)
-#         db.session.commit()
-#         return render_template("shelf.html")
-#     except:
-#         return render_template("hello.html")

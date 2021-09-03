@@ -36,31 +36,12 @@ def search():
     s = Admin.query.all()
     print(keyword)
     r = []
-    
-    # data=request.get_json()
-    # keyword=data.get("search")
-    # code=keyword.status_codes
-    # print(code)
-    # if code==404:
-    #     return jsonify({"error":"no books info found"}), 404
-
-
     flag=0
-    # for j in s:
-    #     if keyword==None or keyword=="":
-    #         return jsonify({"no books found":"no books info found"}),404 
-    # if  keyword=="":
-    #     return jsonify({"error":"Invalid input"}),404 
+    
     for i in s:
         g = {}
 
-        # if i.isbn != keyword or i.title != keyword or i.author != keyword or i.year != keyword:
-        #     print("Hello2")
-        #     # return jsonify({"error":"no books info found"}), 404
-        #     g['error']="No books found"
-        #     r.append(g)
-            
-
+       
 
         if i.isbn == keyword or i.title == keyword or i.author == keyword or i.year == keyword:
             g['isbn'] = i.isbn
@@ -69,14 +50,7 @@ def search():
             g['year'] = i.year
             r.append(g)
             flag=1
-            # print("Hello1")
             
-
-        # if flag==0:
-        #     return jsonify({'books': r}), 200
-    # if flag==0:
-    #     return jsonify({"error":"no books info found"}), 404
-
 
     f=len(r)
     return render_template('results.html',results=r,flag=flag,f=f)
@@ -98,7 +72,6 @@ def reviews():
     l=len(g)
     
     return render_template('review.html',usr=usr,l=l,flag=flag,results=g)
-    # return jsonify({"reviews":g}),200
 
 
 

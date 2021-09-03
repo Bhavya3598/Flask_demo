@@ -37,11 +37,6 @@ class Admin(db.Model):
       author = db.Column(db.String(500), unique=False, nullable=False)
 
       year = db.Column(db.String(80), unique=False, nullable=False)
-
-      
-
-
-
       def __init__(self,isbn,title,author,year):
           self.isbn=isbn
           self.title=title
@@ -59,29 +54,16 @@ class Review(db.Model):
 
       review = db.Column(db.String(80), unique=False, nullable=False)
 
-      
-
-
-
       def __init__(self,use,isbn,rating,review):
           self.use=use
           self.isbn=isbn
           self.rating=rating
           self.review=review
-
-
-
 class shelf(db.Model):
       __tablename__="book_shelf"
       use=db.Column(db.String(80),primary_key=True, nullable=False)
       
       title = db.Column(db.String(500), primary_key=True, nullable=False)
-
-      
-
-      
-
-
 
       def __init__(self,use,title):
           self.use=use

@@ -6,11 +6,6 @@ from flask_session import Session
 from datetime import datetime
 from markupsafe import escape
 
-
-
-
-
-
 from model import *
 
 
@@ -23,74 +18,12 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.secret_key = "1c488f4b4a21cd7fbc5007664656985c2459b2362cf1f88d44b97e750b0c14b2cf7bc7b792d3f45db"
 app.permanent_session_lifetime = timedelta(minutes=30)
 
-
-
-
-
-
 db.init_app(app)
 
-# @app.route('/')
-# def index():
-#     now=datetime.datetime.now()
-#     new_year=now.month == 1 and now.day == 1
-#     return render_template("index.html",new_year=new_year)
 
-
-# @app.route('/index')
-# def first():
-#     name="Sam"
-#     return render_template("index.html",headline=name)
-
-
-# @app.route('/first')
-# def first1():
-#     return "Goodbye"
-
-# @app.route('/second')
-# def second1():
-#     d=['Sam','Vishal','Mohan','Sai Kiran']
-#     return render_template("second1.html",name=d)
-
-# @app.route('/URL1')
-# def Nav1():
-#     return render_template("URLnav1.html")
-
-# @app.route('/URL2')
-# def Nav2():
-#     return render_template("URLnav2.html")
-
-# @app.route('/nav1')
-# def navigation1():
-#     return render_template("navigation1.html")
-
-# @app.route('/nav2')
-# def navigation2():
-#     return render_template("navigation2.html")
-
-
-
-# @app.route('/')
-# def Nav1():
-#     return render_template("index1.html")
-
-# @app.route('/URL1')
-# def Nav2():
-#     return render_template("demo.html")
 @app.route('/')
 def first() :
-    # db.create_all()
     return render_template("index1.html")
-
-# def last():
-#     j=shelf(user=sname,title=details)
-#     db.session.add(j)
-#     db.session.commit()
-    
-        
-
-
-
 @app.route('/form1')
 def form1():
     return render_template("form1.html")
@@ -100,7 +33,6 @@ def form2():
     session['name']=request.form.get("name")
     salt = uuid.uuid4().hex
     password=request.form.get("password")
-    #PASS=hashlib.sha512(password.encode('utf-8') + salt.encode('utf-8')).hexdigest()
     emailid=request.form.get("emailid")
     phoneNo=request.form.get("phonenumber")
     dob=request.form.get("birthday")
@@ -114,14 +46,8 @@ def form2():
     db.session.commit()
 
     # s=Session()
-    
-    
-
     return render_template("hello.html",names=session['name'])
 
-    # m=Test("Sam","123","samswaroop97@gmail.com","9515226365","18-11-1997")
-    # db.session.add(m)
-    # db.session.commit()
 
 @app.route('/form3')
 def form3():
@@ -155,33 +81,10 @@ def logout():
 
     return render_template("first.html")
 
-
-# @app.route('/index')
-# def index():
-    
-#     if 'name' in session:
-#         return 'Logged in as %s' % escape(session['name'])
-#     return 'You are not logged in'
-
-
-# @app.route('/logout')
-# def logout():
-#     session.pop('name',None)
-#     return redirect(url_for('index'))
-
-
 @app.route('/admin')
 def admin():
     
     return render_template("admin.html",users=Test.query.all())
-
-
-
-    
-    # current_time = now.strftime("%H:%M:%S")
-    
-    # return render_template("hello.html",users=Test.query.all(),names=name,passwords=password)
-
 
 @app.route('/search',methods=["POST"])
 def search():
@@ -245,20 +148,6 @@ def last(title):
     db.session.commit()
     return render_template('hello.html',u=shelf.query.all(),n=session['name'])
 
-
-
-
-# @app.route('/last')
-# def last():
-#     j=shelf(user=sname,title=details)
-#     db.session.add(j)
-#     db.session.commit()
-
-
-
-
-
-
 @app.route('/bookshelf/<string:names>', methods=['POST'])
 def bookshelf(names):
     s=shelf.query.all()
@@ -266,15 +155,7 @@ def bookshelf(names):
     return render_template("hello.html",n=names,u=s)
 
 
-# @app.route('/delete/<string:id>')
-# def delete(id):
-#     print(id)
-#     s=shelf.query.all()
-#     for i in s:
-#         if i.user==session['name'] and i.title==id:
-#             shelf.query.filter(shelf.user==session['name'],shelf.title==id).delete()
-#             db.session.commit()
-#     return render_template('hello.html',u=s,n=session['name'])
+
 
 @app.route("/delete/<string:book>")
 def delete(book):
@@ -287,29 +168,10 @@ def delete(book):
         return render_template("hello.html",u=shelf.query.all(),n=session['name'])
     except:
         return render_template("hello.html",u=shelf.query.all(),n=session['name'])
-
-
-
-
-
 @app.route('/home')
 def home():
     d=shelf.query.all()
     return render_template('hello.html')
-
-# @app.route('/last/<string:sname>/<string:details>')
-# def last(sname,details):
-#     j=shelf(user=sname,title=details)
-#     db.session.add(j)
-#     db.session.commit()
-#     redirect('details')
-    
-
-
-
-
-
-
 if __name__ == "__main__" :
 
     with app.app_context() :
