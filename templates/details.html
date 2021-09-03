@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <style>
+        *{
+    margin: 0;
+    padding: 0;
+}
+.rate {
+    float: left;
+    height: 46px;
+    padding: 0 10px;
+}
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:#ccc;
+}
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+.rate > input:checked ~ label {
+    color: #ffc700;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
+    </style>
+</head>
+<body>
+    <div class="form-group">
+        
+    </div>
+    
+    <form action="/details1/{{s}}/{{details}}/{{session['name']}}" method="post">
+        <div class="note">
+            <h1>Book Details</h1>
+        </div>
+        
+        <div class="form-content">
+            <div>
+                <div >
+                    <h1>The details of the book,{{details}} are:</h1>
+                    <h2>Title:{{details}}</h2>
+                    <h2>ISBN:{{s}}</h2>
+                    <h2>Author:{{p}}</h2>
+                    <h2>Year:{{d}}</h2>
+                    <br>
+                    
+                    <!-- <input type="text" placeholder="Enter Username" name="user" class="form-control"required> -->
+                    <h3>Please give your rating:</h3>
+                    <div class="rate">
+                        <input type="radio" id="star5" name="stars" value="5 stars" />
+                        <label for="star5" title="text">5 star</label>
+                        <input type="radio" id="star4" name="stars" value="4 stars" />
+                        <label for="star4" title="text">4 star</label>
+                        <input type="radio" id="star3" name="stars" value="3 stars" />
+                        <label for="star3" title="text">3 star</label>
+                        <input type="radio" id="star2" name="stars" value="2 stars" />
+                        <label for="star2" title="text">2 star</label>
+                        <input type="radio" id="star1" name="stars" value="1 star" />
+                        <label for="star1" title="text">1 star</label>
+                      </div>
+                      <br>
+                      <br>
+
+                    
+                    
+                    <h3>Please drop your review here:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3>
+                    <input type="text" name="review" placeholder="Enter your review" class="form-control"required>
+                </div>
+                <br>
+                
+                <br>
+                
+        
+                
+                
+            </div>
+            <br>
+            <br>
+            <button class="btnSubmit" >Submit</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <!-- <button type="button" class="btnSubmit1" style="text-decoration: none;"><a href="{{ url_for('first')}}" > Go back </button> -->
+    
+    
+        </div>
+        
+    
+    
+    
+        
+    </form>
+    
+
+    
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,27 @@
+{% extends "layout1.html" %}
+{% block body %}
+<div class="note">
+  <h1>Search</h1>
+</div>
+<br>
+<br>
+<br>
+<h2 style="padding-left: 620px;">Search for books</h2>
+
+                <form class="example" action="/api/search" style="margin:auto;max-width:300px" method="post">
+                    <input type="text" placeholder="Search.." name="search" class="form-control"required>
+                    <button type="submit" style="width: 240px;">Search</button>
+                  
+                </form>
+                <br>
+                <br>
+                <br>
+                <h2 style="padding-left: 600px;">Search for Reviews</h2>
+                <form class="example" action="/api/reviews" style="margin:auto;max-width:300px" method="post">
+                    <input type="text" placeholder="Enter username" name="username" class="form-control"required>
+                    <button type="submit" style="width: 240px;">Search</button>
+                  <br>
+                  <br>
+                  <br>
+                </form>
+{% endblock %}
